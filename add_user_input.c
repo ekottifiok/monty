@@ -5,14 +5,14 @@
  *
  * @head: the pointer to the head pointer
  * @str: the new str
+ * @line_num: the new line number
  * Return: list_t*
  */
 user_input_t *add_node_end(user_input_t **head, char *str, int line_num)
 {
 	user_input_t *newNode, *buffer;
 
-	
-	newNode = malloc(sizeof(user_input_t));
+		newNode = malloc(sizeof(user_input_t));
 	if (!newNode)
 		return (NULL);
 	newNode->line_number = line_num;

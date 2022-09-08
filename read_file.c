@@ -1,6 +1,12 @@
 #include "monty.h"
 
-
+/**
+ * read_file - reads what's inside a file
+ *
+ * @file_name: the file name to be read
+ * @file_read: where to store the file that has being read
+ * Return: int 0 for success and 1 for failure
+ */
 int read_file(char const *file_name, char **file_read)
 {
 	char c, *buffer;
@@ -18,7 +24,7 @@ int read_file(char const *file_name, char **file_read)
 	{
 
 		buffer[iter] = c;
-		buffer = realloc(buffer, sizeof(char) * (iter+2));
+		buffer = realloc(buffer, sizeof(char) * (iter + 2));
 	}
 	fclose(fp);
 	buffer[iter] = '\0';

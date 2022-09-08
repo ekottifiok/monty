@@ -21,14 +21,13 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-
 /**
  * struct user_input_s - linked list of the user inputs
- * 
+ *
  * @line_number: the line number of the command
  * @command: the actual command inputted by the user
  * @next: the next available command
- * 
+ *
  * Description: all user input is stored in this list
  */
 typedef struct user_input_s
@@ -36,8 +35,7 @@ typedef struct user_input_s
 	int line_number;
 	char *command;
 	struct user_input_s *next;
-}user_input_t;
-
+} user_input_t;
 
 /**
  * struct instruction_s - opcode and its function
@@ -55,10 +53,14 @@ typedef struct instruction_s
 
 /**
  * struct info_s - carries all the instruction
- * 
+ * @instruct: the instruction given by the user
+ * @input: the user input list
+ * @stack: the main stack
+ * @file_name: the file the user opens
+ *
  */
 typedef struct info_s
-{	
+{
 	instruction_t *instruct;
 	user_input_t *input;
 	stack_t *stack;
@@ -68,14 +70,17 @@ typedef struct info_s
 /* custom definitions */
 #define STR_TO_INT(val) (val - 48)
 #define INT_TO_STR(val) (val + 48)
-#define INFO_INIT	{NULL, NULL, NULL, NULL}
+#define INFO_INIT              \
+	{                          \
+		NULL, NULL, NULL, NULL \
+	}
 
 user_input_t *add_node_end(user_input_t **head, char *str, int line_num);
 int parse_read(all_info *info);
 int read_file(char const *file_name, char **file_read);
 char *remove_whitespace(char *string);
 int free_all_info(all_info *info);
-void (*get_builtin_function(char *string))(stack_t **stack, unsigned int line_number);
+void (*get_builtin_function(char *string))(stack_t **, unsigned int);
 int execute_command(all_info *info);
 
 void push_monty(stack_t **, unsigned int);
@@ -92,11 +97,10 @@ void mod_monty(stack_t **, unsigned int);
 void pchar_monty(stack_t **, unsigned int);
 void pstr_monty(stack_t **, unsigned int);
 
-
 int _strcmp(char *, char *);
 char *_strdup(char *);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 int _strncmp(char *s1, char *s2, int len);
-char *copy_string_index(char *, unsigned int , char *);
+char *copy_string_index(char *, unsigned int, char *);
 #endif
