@@ -1,14 +1,10 @@
 #include <stdio.h>
+#include <string.h>
 
-void print(char **str)
-{
-    while (*str != NULL)
-        puts(*str++);
-    
-}
+
+#define STR_TO_INT(val) (val - 48)
+#define INT_TO_STR(val) (val + 48)
+
+
+
 void main(void)
-{
-    char *s;
-    s = "Hellodklfdjfkdsjflkdsj;odskfjosd";
-    // print(((char **)({"hELL", "FILE"};)));
-}

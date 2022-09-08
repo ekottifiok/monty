@@ -12,4 +12,6 @@ add_executable(
     remove_whitespace.c
     free_all_info.c
     execute_command.c
+    get_builtin_function.c
+    string_functions.c
 )

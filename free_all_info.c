@@ -17,10 +17,27 @@ void free_user_input(user_input_t **holder)
     *holder = NULL;
 }
 
+void free_stack(stack_t **holder)
+{
+    stack_t *buffer;
+
+    if (!holder)
+        return;
+    
+    while (*holder)
+    {
+        buffer = (*holder)->next;
+        free(*holder);
+        *holder = buffer;
+    }
+    *holder = NULL;    
+}
+
 int free_all_info(all_info *info)
 {
     unsigned int iter;
 
     free_user_input(&info->input);
+    free_stack(&info->stack);
     return (0);
 }

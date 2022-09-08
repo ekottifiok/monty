@@ -11,7 +11,7 @@ int initialize(all_info *holder, char const *file)
 {
 	if (!holder)
 		return (1);
-	holder->file_name = "/home/ifiokekott/VSCode/ALX/monty/bytecodes/000.m";
+	holder->file_name = "/home/ifiokekott/VSCode/ALX/monty/bytecodes/00.m";
 	return (0);
 }
 
@@ -42,6 +42,8 @@ int main(int argc, char const *argv[])
 	{
 		exit(EXIT_FAILURE);
 	}
+
+	execute_command(&data);
 	
 	free_all_info(&data);
 	exit(EXIT_SUCCESS);

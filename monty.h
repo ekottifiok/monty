@@ -65,6 +65,9 @@ typedef struct info_s
 	char const *file_name;
 } all_info;
 
+/* custom definitions */
+#define STR_TO_INT(val) (val - 48)
+#define INT_TO_STR(val) (val + 48)
 #define INFO_INIT	{NULL, NULL, NULL, NULL}
 
 user_input_t *add_node_end(user_input_t **head, char *str, int line_num);
@@ -72,5 +75,28 @@ int parse_read(all_info *info);
 int read_file(char const *file_name, char **file_read);
 char *remove_whitespace(char *string);
 int free_all_info(all_info *info);
+void (*get_builtin_function(char *string))(stack_t **stack, unsigned int line_number);
+int execute_command(all_info *info);
 
+void push_monty(stack_t **, unsigned int);
+void pall_monty(stack_t **, unsigned int);
+void pint_monty(stack_t **, unsigned int);
+void pop_monty(stack_t **, unsigned int);
+void swap_monty(stack_t **, unsigned int);
+void add_monty(stack_t **, unsigned int);
+void nop_monty(stack_t **, unsigned int);
+void sub_monty(stack_t **, unsigned int);
+void div_monty(stack_t **, unsigned int);
+void mul_monty(stack_t **, unsigned int);
+void mod_monty(stack_t **, unsigned int);
+void pchar_monty(stack_t **, unsigned int);
+void pstr_monty(stack_t **, unsigned int);
+
+
+int _strcmp(char *, char *);
+char *_strdup(char *);
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
+int _strncmp(char *s1, char *s2, int len);
+char *copy_string_index(char *, unsigned int , char *);
 #endif
