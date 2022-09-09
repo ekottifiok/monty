@@ -54,13 +54,17 @@ void pall_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pint_monty - print all nodes(value) in the stack
+ * pint_monty - prints the value at the top of the stack, followed by a new line.
  * @stack: top of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void pint_monty(stack_t **stack __attribute__((unused)),
-unsigned int line_number __attribute__((unused)))
+void pint_monty(stack_t **stack, unsigned int line_number)
 {
-	puts("pint_monty");
+	if (!stack || !(*stack))
+	{	
+		fprintf(stderr, "L<%d>: can't pint, stack empty", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
 }
