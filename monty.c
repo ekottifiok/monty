@@ -48,10 +48,17 @@ int initialize(all_info *holder, char const *file __attribute__((unused)))
  * @argv: the list that carries the input
  * Return: int 0 for success and 1 for failure
  */
-int main(int argc __attribute__((unused)), char const *argv[])
+int main(int argc, char const *argv[])
 {
 	all_info data = INFO_INIT;
 
+	/**
+	 * if (argc != 2 && strcmp(*argv, "monty"))
+	 * {
+	 * printf("USAGE: monty file\n");
+	 * exit(EXIT_FAILURE);
+	 * }
+	 */
 	if (initialize(&data, argv[1]))
 		return (1);
 

@@ -63,9 +63,8 @@ int execute_command(all_info *info)
 			return (user_command->line_number);
 		}
 		parsed = copy_string_index(user_command->command, 1, " ");
-		if (!parsed)
-			parsed = 0;
-		builtin_commands(&(info->stack), atoi(parsed));
+		builtin_commands(&(info->stack), (unsigned int)str_to_integer(parsed));
+
 		free(parsed);
 
 		free(buffer);
