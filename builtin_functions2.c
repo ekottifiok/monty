@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * pop_monty - The opcode pop removes the top element of the stack.
+ * pop - The opcode pop removes the top element of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void pop_monty(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *buffer;
 
@@ -21,12 +21,12 @@ void pop_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * swap_monty - swaps the top two elements of the stack.
+ * swap - swaps the top two elements of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void swap_monty(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int line_number)
 {
 	int buffer;
 
@@ -41,12 +41,12 @@ void swap_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * add_monty - adds the top two elements of the stack.
+ * add - adds the top two elements of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void add_monty(stack_t **stack, unsigned int line_number)
+void add(stack_t **stack, unsigned int line_number)
 {
 
 	stack_t *buffer;
@@ -64,24 +64,24 @@ void add_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * nop_monty - doesn’t do anything.
+ * nop - doesn’t do anything.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void nop_monty(stack_t **stack __attribute__((unused)),
+void nop(stack_t **stack __attribute__((unused)),
 			   unsigned int line_number __attribute__((unused)))
 {
 }
 
 /**
- * sub_monty - subtracts the top element of the stack
+ * sub - subtracts the top element of the stack
  * from the second top element of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void sub_monty(stack_t **stack, unsigned int line_number)
+void sub(stack_t **stack, unsigned int line_number)
 {
 	stack_t *buffer;
 

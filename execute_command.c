@@ -39,6 +39,37 @@ double str_to_integer(char *s)
 }
 
 /**
+ * push - add a node(value) at the top of the stack
+ * @stack: current top of the stack
+ * @line_number: the current line in the monty file
+ * Return: Nothing
+ */
+void push_queue(stack_t **stack, unsigned int line_number)
+{
+	stack_t *newNode, *buffer = *stack;
+
+	newNode = malloc(sizeof(stack_t));
+	if (!newNode)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	newNode->n = line_number;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+	if (!(*stack))
+	{
+		*stack = newNode;
+		return;
+	}
+	while (buffer->next)
+		buffer = buffer->next;
+	newNode->prev = buffer;
+	buffer->next = newNode;
+	return;
+}
+
+/**
  * execute_command - the main brain behind the whole process
  *
  * @info: the info holder
@@ -46,7 +77,7 @@ double str_to_integer(char *s)
  */
 int execute_command(all_info *info)
 {
-	unsigned int iter;
+	unsigned int iter, stack_queue = 0;
 	user_input_t *user_command;
 	char *buffer, *buffer_cp, *parsed;
 	void (*builtin_commands)(stack_t **, unsigned int) = NULL;
@@ -57,16 +88,29 @@ int execute_command(all_info *info)
 		buffer = _strdup(user_command->command);
 		buffer_cp = buffer;
 		parsed = strtok(buffer_cp, " ");
-		builtin_commands = get_builtin_function(parsed);
-		if (!builtin_commands)
+		if (stack_queue && !_strncmp(parsed, "push", 4))
 		{
-			return (user_command->line_number);
+			parsed = copy_string_index(user_command->command, 1, " ");
+			push_queue(&(info->stack), (unsigned int)str_to_integer(parsed));
+			free(parsed);
 		}
-		parsed = copy_string_index(user_command->command, 1, " ");
-		builtin_commands(&(info->stack), (unsigned int)str_to_integer(parsed));
-
-		free(parsed);
-
+		else if(!_strcmp(parsed, "stack"))
+		{
+			stack_queue = 0;
+		}
+		else if(!_strcmp(parsed, "queue"))
+		{
+			stack_queue = 1;
+		}
+		else
+		{
+			builtin_commands = get_builtin_function(parsed);
+			if (!builtin_commands)
+				return (user_command->line_number);
+			parsed = copy_string_index(user_command->command, 1, " ");
+			builtin_commands(&(info->stack), (unsigned int)str_to_integer(parsed));
+			free(parsed);
+		}
 		free(buffer);
 	}
 	return (0);

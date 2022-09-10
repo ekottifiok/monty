@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * push_monty - add a node(value) at the top of the stack
+ * push - add a node(value) at the top of the stack
  * @stack: current top of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void push_monty(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newNode;
 
@@ -26,16 +26,17 @@ void push_monty(stack_t **stack, unsigned int line_number)
 	}
 
 	newNode->next = *stack;
+	newNode->next->prev = newNode;
 	*stack = newNode;
 }
 
 /**
- * pall_monty - print all nodes(value) in the stack
+ * pall - print all nodes(value) in the stack
  * @stack: top of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void pall_monty(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *curr;
 
@@ -54,13 +55,13 @@ void pall_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pint_monty - prints the value at the top of the stack,
+ * pint - prints the value at the top of the stack,
  * followed by a new line.
  * @stack: top of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void pint_monty(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!stack || !(*stack))
 	{
@@ -68,4 +69,57 @@ void pint_monty(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * rotl - rotates the stack to the top
+ *
+ * @stack: top of the stack
+ * @line_number: the current line in the monty file
+ * Return: Nothing
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *buffer, *head;
+	unsigned int i;
+
+	if (!stack || !(*stack) || !(*stack)->next)
+		return;
+
+	head = *stack;
+	buffer = (*stack)->next;
+	buffer->prev = NULL;
+	head->next = NULL;
+
+	*stack = buffer;
+	while (buffer->next)
+		buffer = buffer->next;
+
+	buffer->next = head;
+	head->prev = buffer;
+}
+
+/**
+ * rotr - rotates the stack to the bottom
+ *
+ * @stack: top of the stack
+ * @line_number: the current line in the monty file
+ * Return: Nothing
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *buffer, *head;
+	unsigned int i;
+
+	if (!stack || !(*stack) || !(*stack)->next)
+		return;
+
+	buffer = *stack;
+	while (buffer->next)
+		buffer = buffer->next;
+	buffer->next = *stack;
+	(*stack)->prev = buffer;
+	*stack = (*stack)->prev;
+	(*stack)->prev->next = NULL;
+	(*stack)->prev = NULL;
 }

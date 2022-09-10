@@ -10,25 +10,26 @@ void (*get_builtin_function(char *string))(stack_t **, unsigned int)
 {
 	unsigned int iteration;
 	instruction_t functions[] = {
-		{"push", push_monty},
-		{"pall", pall_monty},
-		{"pint", pint_monty},
-		{"pop", pop_monty},
-		{"swap", swap_monty},
-		{"add", add_monty},
-		{"nop", nop_monty},
-		{"sub", sub_monty},
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{"sub", sub},
 		{"div", div_monty},
-		{"mul", mul_monty},
-		{"mod", mod_monty},
-		{"pchar", pchar_monty},
-		{"pstr", pstr_monty},
+		{"mul", mul},
+		{"mod", mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}};
 
 	for (iteration = 0; functions[iteration].opcode != NULL; iteration++)
 	{
-		if (!_strcmp(functions[iteration].opcode, string) ||
-			!_strncmp(functions[iteration].opcode, string, _strlen(string) - 1))
+		if (!_strcmp(functions[iteration].opcode, string))
 			break;
 	}
 

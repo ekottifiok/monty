@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * div_monty - divides the second top element of the
+ * div - divides the second top element of the
  * stack by the top element of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
@@ -10,17 +10,17 @@
 void div_monty(stack_t **stack __attribute__((unused)),
 			   unsigned int line_number __attribute__((unused)))
 {
-	puts("div_monty");
+	puts("div");
 }
 
 /**
- * mul_monty - multiplies the second top element of the
+ * mul - multiplies the second top element of the
  * stack with the top element of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void mul_monty(stack_t **stack, unsigned int line_number)
+void mul(stack_t **stack, unsigned int line_number)
 {
 	stack_t *next;
 
@@ -37,13 +37,13 @@ void mul_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mod_monty - computes the rest of the division of the
+ * mod - computes the rest of the division of the
  * second top element of the stack by the top element of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void mod_monty(stack_t **stack, unsigned int line_number)
+void mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *next;
 
@@ -67,13 +67,13 @@ void mod_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pchar_monty - prints the char at the top of the stack
+ * pchar - prints the char at the top of the stack
  * followed by a new line.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void pchar_monty(stack_t **stack, unsigned int line_number)
+void pchar(stack_t **stack, unsigned int line_number)
 {
 	int val;
 
@@ -98,13 +98,13 @@ void pchar_monty(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pstr_monty - print all nodes(value) in the stack
+ * pstr - print all nodes(value) in the stack
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void pstr_monty(stack_t **stack __attribute__((unused)),
+void pstr(stack_t **stack __attribute__((unused)),
 				unsigned int line_number __attribute__((unused)))
 {
-	puts("pstr_monty");
+	puts("pstr");
 }
