@@ -79,13 +79,11 @@ int execute_command(all_info *info)
 {
 	unsigned int iter, stack_queue = 0;
 	user_input_t *user_command = info->input;
-	char *buffer, *buffer_cp, *parsed;
+	char *buffer = _strdup(user_command->command), *buffer_cp = buffer, *parsed;
 	void (*builtin_commands)(stack_t **, unsigned int) = NULL;
 
 	for (iter = 0; user_command; iter++, user_command = user_command->next)
 	{
-		buffer = _strdup(user_command->command);
-		buffer_cp = buffer;
 		parsed = strtok(buffer_cp, " ");
 		if (stack_queue && !_strncmp(parsed, "push", 4))
 		{
@@ -111,10 +109,12 @@ int execute_command(all_info *info)
 				exit(EXIT_FAILURE);
 			}
 			parsed = copy_string_index(user_command->command, 1, " ");
+			if (parsed == NULL)
+				builtin_commands(&(info->stack), user_command->line_number);
 			builtin_commands(&(info->stack), (unsigned int)str_to_integer(parsed));
 			free(parsed);
 		}
-		free(buffer);
 	}
+	free(buffer);
 	return (0);
 }
