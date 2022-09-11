@@ -105,7 +105,10 @@ int execute_command(all_info *info)
 		{
 			builtin_commands = get_builtin_function(parsed);
 			if (!builtin_commands)
-				return (user_command->line_number);
+			{
+				fprintf(stderr, "L%d: unknown instruction %s", user_command->line_number, user_command->command);
+				exit(EXIT_FAILURE);
+			}
 			parsed = copy_string_index(user_command->command, 1, " ");
 			builtin_commands(&(info->stack), (unsigned int)str_to_integer(parsed));
 			free(parsed);
