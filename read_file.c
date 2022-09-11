@@ -22,7 +22,11 @@ int read_file(char const *file_name, char **file_read)
 	buffer = malloc(sizeof(char));
 	for (iter = 0; (c = fgetc(fp)) != EOF; iter++)
 	{
-
+		if (c == '$')
+		{
+			iter--;
+			continue;
+		}
 		buffer[iter] = c;
 		buffer = realloc(buffer, sizeof(char) * (iter + 2));
 	}

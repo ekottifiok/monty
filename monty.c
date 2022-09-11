@@ -40,7 +40,7 @@ int initialize(all_info *holder, char const *file)
 	/*
 	 * holder->file_name = "/home/ifiokekott/VSCode/ALX/monty/bytecodes/19.m";
 	 */
-	holder->file_name = "/home/ifiokekott/VSCode/ALX/monty/bytecodes/test_1_1.m";
+	holder->file_name = file;
 	return (0);
 }
 
@@ -55,11 +55,11 @@ int main(int argc, char const *argv[])
 {
 	all_info data = INFO_INIT;
 
-//	if (argc != 2 && strcmp(*argv, "monty"))
-//	{
-//		printf("USAGE: monty file\n");
-//		exit(EXIT_FAILURE);
-//	}
+	if (argc != 2 && strcmp(*argv, "monty"))
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
 	if (initialize(&data, argv[1]))
 		return (1);

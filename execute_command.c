@@ -28,11 +28,12 @@ double str_to_integer(char *s)
 
 	if (!s)
 		return (-1);
-	factor = strlen(s);
+	for (factor = 0, i = 0; s[i] && (s[i] >= '0' && s[i] <= '9'); i++, factor++)
+	;
 	for (i = 0, digit = 0, factor--; s[i]; i++, factor--)
 	{
 		if (s[i] < '0' || s[i] > '9')
-			break;
+			return (digit);
 		digit += STR_TO_INT(s[i]) * _pow_recursion(10, factor);
 	}
 	return (digit);
@@ -77,11 +78,10 @@ void push_queue(stack_t **stack, unsigned int line_number)
 int execute_command(all_info *info)
 {
 	unsigned int iter, stack_queue = 0;
-	user_input_t *user_command;
+	user_input_t *user_command = info->input;
 	char *buffer, *buffer_cp, *parsed;
 	void (*builtin_commands)(stack_t **, unsigned int) = NULL;
 
-	user_command = info->input;
 	for (iter = 0; user_command; iter++, user_command = user_command->next)
 	{
 		buffer = _strdup(user_command->command);
@@ -106,7 +106,8 @@ int execute_command(all_info *info)
 			builtin_commands = get_builtin_function(parsed);
 			if (!builtin_commands)
 			{
-				fprintf(stderr, "L%d: unknown instruction %s", user_command->line_number, user_command->command);
+				fprintf(stderr, "L%d: unknown instruction %s\n",
+						user_command->line_number, user_command->command);
 				exit(EXIT_FAILURE);
 			}
 			parsed = copy_string_index(user_command->command, 1, " ");
