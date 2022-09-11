@@ -1,16 +1,31 @@
 #include "monty.h"
 
 /**
- * div - divides the second top element of the
+ * div_monty - divides the second top element of the
  * stack by the top element of the stack.
  * @stack: stack of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void div_monty(stack_t **stack __attribute__((unused)),
-			   unsigned int line_number __attribute__((unused)))
+void div_monty(stack_t **stack, unsigned int line_number)
 {
-	puts("div");
+	stack_t *next;
+
+	if (!stack || !(*stack) || !((*stack)->next))
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	next = (*stack)->next;
+	next->n = next->n / (*stack)->n;
+	free(*stack);
+	*stack = next;
 }
 
 /**
@@ -104,7 +119,7 @@ void pchar(stack_t **stack, unsigned int line_number)
  * Return: Nothing
  */
 void pstr(stack_t **stack __attribute__((unused)),
-				unsigned int line_number __attribute__((unused)))
+		  unsigned int line_number __attribute__((unused)))
 {
 	puts("pstr");
 }

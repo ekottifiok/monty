@@ -39,7 +39,7 @@ double str_to_integer(char *s)
 }
 
 /**
- * push - add a node(value) at the top of the stack
+ * push_queue - add a node(value) at the top of the stack
  * @stack: current top of the stack
  * @line_number: the current line in the monty file
  * Return: Nothing
@@ -66,7 +66,6 @@ void push_queue(stack_t **stack, unsigned int line_number)
 		buffer = buffer->next;
 	newNode->prev = buffer;
 	buffer->next = newNode;
-	return;
 }
 
 /**
@@ -94,11 +93,11 @@ int execute_command(all_info *info)
 			push_queue(&(info->stack), (unsigned int)str_to_integer(parsed));
 			free(parsed);
 		}
-		else if(!_strcmp(parsed, "stack"))
+		else if (!_strcmp(parsed, "stack"))
 		{
 			stack_queue = 0;
 		}
-		else if(!_strcmp(parsed, "queue"))
+		else if (!_strcmp(parsed, "queue"))
 		{
 			stack_queue = 1;
 		}

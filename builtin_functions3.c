@@ -78,10 +78,9 @@ void pint(stack_t **stack, unsigned int line_number)
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void rotl(stack_t **stack, unsigned int line_number)
+void rotl(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *buffer, *head;
-	unsigned int i;
 
 	if (!stack || !(*stack) || !(*stack)->next)
 		return;
@@ -106,10 +105,9 @@ void rotl(stack_t **stack, unsigned int line_number)
  * @line_number: the current line in the monty file
  * Return: Nothing
  */
-void rotr(stack_t **stack, unsigned int line_number)
+void rotr(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
-	stack_t *buffer, *head;
-	unsigned int i;
+	stack_t *buffer;
 
 	if (!stack || !(*stack) || !(*stack)->next)
 		return;

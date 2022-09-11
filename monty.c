@@ -55,13 +55,13 @@ int main(int argc, char const *argv[])
 {
 	all_info data = INFO_INIT;
 
-	// if (argc != 2 && strcmp(*argv, "monty"))
-	// {
-	// 	printf("USAGE: monty file\n");
-	// 	exit(EXIT_FAILURE);
-	// }
+	if (argc != 2 && strcmp(*argv, "monty"))
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
-	if (initialize(&data, "/home/ifiokekott/VSCode/ALX/monty/bytecodes/47.m"))
+	if (initialize(&data, argv[1]))
 		return (1);
 
 	if (parse_read(&data))
