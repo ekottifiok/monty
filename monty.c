@@ -55,7 +55,7 @@ int main(int argc, char const *argv[])
 {
 	all_info data = INFO_INIT;
 
-	if (argc < 2 && strcmp(*argv, "monty"))
+	if (argc != 2 && strcmp(*argv, "monty"))
 	{
 		printf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
